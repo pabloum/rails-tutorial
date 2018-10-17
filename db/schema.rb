@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_204640) do
+ActiveRecord::Schema.define(version: 2018_10_17_213836) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "doctor_id"
+    t.integer "patient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
@@ -18,6 +33,26 @@ ActiveRecord::Schema.define(version: 2018_10_17_204640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "color"
+  end
+
+  create_table "oranges", force: :cascade do |t|
+    t.integer "size"
+    t.integer "tree_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trees", force: :cascade do |t|
+    t.string "variety"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
